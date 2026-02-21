@@ -10,6 +10,12 @@ Rano é escrito **100%** em **C++**, de código aberto e **fortemente** inspirad
 - **Interface Colorida:** Feedback visual com cores ANSI (Verde para sucesso, Vermelho para erros).
 - **Modularizado:** Estrutura organizada em Header e Source files.
 
+## Segurança e Privacidade
+O Rano é um projeto de código aberto e focado em privacidade:
+- **Sem conexões externas:** O código não possui bibliotecas de rede; tudo é processado localmente no seu terminal.
+- **Transparência:** Sinta-se à vontade para auditar o código fonte antes de compilar.
+- **Offline:** O editor funciona 100% sem internet.
+
 ## Como instalar e usar
 
 Para rodar o Rano no seu terminal Linux:
