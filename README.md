@@ -16,7 +16,7 @@ Para rodar o Rano no seu terminal Linux:
 
 1. **Clone o repositório:**
    ```bash
-   git clone [https://github.com/miguel-h-s/rano-cpp.git](https://github.com/miguel-h-s/rano-cpp.git)
+   git clone https://github.com/miguel-h-s/rano-cpp.git
    ```
 
 2. **Entre na pasta:**
