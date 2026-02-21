@@ -13,7 +13,7 @@ Rano é escrito **100%** em **C++**, de código aberto e **fortemente** inspirad
 ## Segurança e Privacidade
 O Rano é um projeto de código aberto e focado em privacidade:
 - **Sem conexões externas:** O código não possui bibliotecas de rede; tudo é processado localmente no seu terminal.
-- **Transparência:** Sinta-se à vontade para auditar o código fonte antes de compilar.
+- **Transparência:** Sinta-se à vontade para mudar o código fonte na sua maquina antes de compilar.
 - **Offline:** O editor funciona 100% sem internet.
 
 ## Como instalar e usar
