@@ -28,7 +28,7 @@ Para rodar o Rano no seu terminal Linux:
 2. **Entre na pasta:**
   ```bash
   cd rano-cpp
-```
+  ```
 3. **Compile:**
   ```bash
   make
