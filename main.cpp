@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "rano.h"
+#include "rano.hpp"
 
 int main(int argc, char* argv[]) {
     // Caso o usuário abra via terminal direto
