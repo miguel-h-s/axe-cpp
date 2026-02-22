@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "rano.h"
+#include "rano.hpp"
 
 void apresentacao() {
     std::cout << AMARELO 
