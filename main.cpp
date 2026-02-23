@@ -15,7 +15,6 @@ int main(int argc, char* argv[]) {
     
     int opcao;
     while(true) {
-        (void)std::system("clear");
         apresentacao();
         menu();
         std::cout << "opção: " << std::flush;
