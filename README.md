@@ -1,4 +1,4 @@
-# Axe v1.1.0 Alpha - antigo Rano
+# Axe v1.1.0 Alpha | Power Edition - antigo Rano
 **> sinta o poder do C++ em seu terminal Linux!**
 
 ## O que é o Axe?
