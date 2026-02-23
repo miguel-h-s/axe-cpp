@@ -1,5 +1,5 @@
 # Nome do executável
-TARGET = rano
+TARGET = axe
 
 # Arquivos fonte
 SRCS = main.cpp funcoes.cpp
@@ -7,8 +7,7 @@ SRCS = main.cpp funcoes.cpp
 # Comando do compilador
 CC = g++
 
-# Flags (avisos e padrão C++17)
-CFLAGS = -Wall -std=c++17
+CFLAGS = -Wall -std=c++17 -O3 -march=native
 
 all:
 	$(CC) $(CFLAGS) $(SRCS) -o $(TARGET)
