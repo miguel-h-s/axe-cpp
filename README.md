@@ -23,7 +23,7 @@ Para rodar o Axe no seu terminal Linux:
 
 1. **Clone o repositório:**
    ```bash
-   # desatualizado!
+   git clone https://github.com/miguel-h-s/axe-cpp.git
    ```
 
 2. **Entre na pasta:**
