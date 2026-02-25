@@ -12,7 +12,7 @@ Axe é um editor de texto, escrito **100%** em **C++**, de código aberto e **fo
 - **Modo Append:** Visualize o conteúdo atual antes de adicionar novas linhas.
 - **Interface Colorida:** Feedback visual com cores ANSI (Verde para sucesso, Vermelho para erros).
 - **Modularizado:** Estrutura organizada em Header e Source files.
-- **Desempenho:** um teste com **10 milhões** linhas de arquivo revelou que o Axe abre isto em **>70 segundos**!
+- **Desempenho:** um teste com **10 milhões** linhas de arquivo revelou que o Axe abre isto em **<10 segundos**!
 
 ## Segurança e Privacidade
 O Axe é um projeto de código aberto e focado em privacidade:
