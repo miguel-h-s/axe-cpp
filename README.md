@@ -1,8 +1,11 @@
 # Axe v1.1.0 Alpha | Power Edition - antigo Rano
-**> sinta o poder do C++ em seu terminal Linux!**
 
 ## O que é o Axe?
 Axe é um editor de texto, escrito **100%** em **C++**, de código aberto e **fortemente** inspirado na ferramenta ``nano`` e ``vim``!
+
+## Feito **100%** pra funcionar em linux
+<img src="https://raw.githubusercontent.com" width="100" alt="Tux - Mascote do Linux">
+
 
 ## Especificações do Rano
 - **Edição In-Memory:** As alterações são feitas na RAM e só gravadas no disco ao salvar.
