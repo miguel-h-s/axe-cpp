@@ -3,7 +3,9 @@
 #include <chrono>
 #include <iomanip>
 #include <vector>
+#include <filesystem>
 #include "axe.hpp"
+namespace fs =  std::filesystem;
 
 void apresentacao() {
     std::cout << VERMELHO << R"(
@@ -27,8 +29,9 @@ void menu() {
 }
 
 void registro_atualizacao() {
-    std::cout << VERDE << "\n--- REGISTRO DE ATUALIZAÇÃO v1.1.0 ---\n" << RESET;
-    std::cout << "- Adicionado: Cronômetro de precisão e Flags -O3.\n";
+    std::cout << VERDE << "\n--- REGISTRO DE ATUALIZAÇÃO v1.2.0 ---\n" << RESET;
+    std::cout << "- Adicionado: comandos de produtividade(editar, remover linha etc\n";
+    std::cout << VERDE << "\n-- REGISTRO DE ATUALIZAÇÃO v1.1.0(passada) ---\n" << RESET;
     std::cout << "- Adicionado: Otimização de I/O e referências constantes.\n";
     std::cout << "- Alteração: Nome alterado de Rano para Axe.\n";
     std::cout << "- Alteração: Logo em ASCII Vermelho.\n";
@@ -55,14 +58,18 @@ void criar_escrever(const std::string& nome_fornecido) {
     
     // Se a opção for carregar o arquivo existente
     if (opcao_arquivo == 2) {
-        std::ifstream arquivo_leitura(nome_arquivo);
+        std::ifstream arquivo_leitura(nome_arquivo);   
+
         if (arquivo_leitura.is_open()) {
+            auto tamanho_bytes = fs::file_size(nome_arquivo);
+            size_t estimativa_linhas = tamanho_bytes / 10; 
+            buffer.reserve(estimativa_linhas + 100);
+
             std::cout << "\n[Axe] Lendo arquivo, aguarde..." << std::endl;
             auto inicio = std::chrono::high_resolution_clock::now();
             std::string linha_antiga;
 
-            // reservando espaço de até 500 mil linhas
-            buffer.reserve(500000);
+
 
             // LEITURA ULTRA RÁPIDA PARA A RAM
             while (std::getline(arquivo_leitura, linha_antiga)) {
@@ -79,7 +86,7 @@ void criar_escrever(const std::string& nome_fornecido) {
             std::cout << std::flush;
             if (total > 30) {
                 for (int i = 0; i < 10; ++i) std::cout << CINZA << std::setw(4) << i+1 << " | " << RESET << buffer[i] << "\n";
-                std::cout << AMARELO << "... [ " << total - 20 << " linhas ocultas para manter a velocidade ] ...\n" << RESET;
+                std::cout << AMARELO << "... [ " << total - 20 << " linhas ocultas para não poluir o terminal ] ...\n" << RESET;
                 for (int i = total - 10; i < total; ++i) std::cout << CINZA << std::setw(4) << i+1 << " | " << RESET << buffer[i] << "\n";
             } else {
                 for (int i = 0; i < total; ++i) std::cout << CINZA << i+1 << " | " << RESET << buffer[i] << "\n";
@@ -98,12 +105,62 @@ void criar_escrever(const std::string& nome_fornecido) {
     // MODO DE EDIÇÃO
     std::string linha;
     std::cout << "\n --- EDITANDO: " << nome_arquivo << " ---\n";
-    std::cout << "digite ':s' para salvar e sair\n\n";
+    std::cout << "digite ':help' para comandos e ':s' para salvar e sair\n\n";
 
-    std::cin.ignore(); 
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpa o buffer do teclado
+
     while(true) {
         std::getline(std::cin, linha);
         if(linha == ":s") break;
+
+        // COMANDO HELP
+        if(linha == ":help"){
+            std::cout<<AMARELO << "\n--- Axe PRODUCTIVITY ---\n";
+            std::cout<<":v (visualizar, limites 50 linhas)\n";
+            std::cout<<":e <linha> (editar linha especifica)\n";
+            std::cout<<":d <linha> (deletar linha especifica)\n";
+            std::cout<<":s (salvar e sair)\n";
+            std::cout<<RESET;
+        }
+
+        // COMANDO VISUALIZAR
+        if(linha == ":v"){
+            int total = buffer.size();
+            std::cout<<"\n--- VISUALIZAção (Total: "<<total<<" linhas) ---\n";
+            int limite = (total > 50) ? 50 : total;
+            for (int i = 0; i < limite; ++i) {
+                std::cout << CINZA << std::setw(6) << i+1 << " | " << RESET << buffer[i] << "\n";
+            }
+            if(total > 50) std::cout << AMARELO << "... (mais " << total-50 << " linhas ocultas) ...\n" << RESET;
+            continue;
+        }
+        
+
+        // COMANDO: EDITAR OU DELETAR
+        if(linha.size() > 3 && (linha.substr(0, 3) == ":e " || linha.substr(0, 3) == ":d ")) {
+            try {
+                int num = std::stoi(linha.substr(3)) - 1;
+                if (num >= 0 && (size_t)num < buffer.size()) {
+                    if (linha[1] == 'e') {
+                        std::cout << "Linha " << num+1 << " atual: " << buffer[num] << "\nNova: ";
+                        std::string nova;
+                        std::getline(std::cin, nova);
+                        buffer[num] = nova;
+                        std::cout << VERDE << "[OK] Editado!\n" << RESET;
+                    } else {
+                        buffer.erase(buffer.begin() + num);
+                        std::cout << VERMELHO << "[OK] Deletado!\n" << RESET;
+                    }
+                } else {
+                    std::cout << AMARELO << "[!] Linha fora do limite.\n" << RESET;
+                }
+            } catch (...) {
+                std::cout << AMARELO << "[!] Use :e <num> ou :d <num>\n" << RESET;
+            }
+            continue;
+        }
+
+        // TEXTO PADRAO
         buffer.push_back(linha); // Adiciona ao que já estava na RAM
     }
 
