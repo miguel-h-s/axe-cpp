@@ -4,7 +4,7 @@
 Axe é um editor de texto, escrito **100%** em **C++**, de código aberto e **fortemente** inspirado na ferramenta ``nano`` e ``vim``!
 
 ## Feito **100%** pra funcionar em linux
-<img src="https://raw.githubusercontent.com" width="100" alt="Tux - Mascote do Linux">
+<img src="https://raw.githubusercontent.com" width="100" alt="Tux">
 
 
 ## Especificações do Rano
