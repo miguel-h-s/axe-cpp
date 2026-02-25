@@ -1,4 +1,4 @@
-# Axe v1.1.0 Alpha | Power Edition - antigo Rano
+# Axe v1.2.0 Alpha | Productivity Editing - antigo Rano
 
 ## O que é o Axe?
 Axe é um editor de texto, escrito **100%** em **C++**, de código aberto e **fortemente** inspirado na ferramenta ``nano`` e ``vim``!
@@ -19,6 +19,18 @@ O Axe é um projeto de código aberto e focado em privacidade:
 - **Sem conexões externas:** O código não possui bibliotecas de rede; tudo é processado localmente no seu terminal.
 - **Transparência:** Sinta-se à vontade para mudar o código fonte na sua maquina antes de compilar.
 - **Offline:** O editor funciona 100% sem internet.
+
+## Tabela de comandos(introduzida na versão 1.2.0 Alpha)
+
+Dentro do modo de edição, o Axe aceita comandos rápidos para facilitar o seu workflow:
+
+| Comando | Descrição |
+| :--- | :--- |
+| `:help` | Mostra o guia de comandos rápido |
+| `:v` | Visualiza as linhas do arquivo (limite de 50 para performance) |
+| `:e <linha>` | Edita uma linha específica (ex: `:e 10`) |
+| `:d <linha>` | Deleta uma linha específica (ex: `:d 5`) |
+| `:s` | Salva as alterações e sai do editor |
 
 ## Como instalar e usar
 
