@@ -4,15 +4,15 @@
 Axe é um editor de texto, escrito **100%** em **C++**, de código aberto e **fortemente** inspirado na ferramenta ``nano`` e ``vim``!
 
 ## Feito **100%** pra funcionar em linux
-<img src="https://raw.githubusercontent.com" width="100" alt="Tux">
+<img src="https://github.com/user-attachments/assets/9ebb2674-febd-4c61-9a90-2963f2f5dbe2" width="100">
 
 
-## Especificações do Rano
+## Especificações do Axe
 - **Edição In-Memory:** As alterações são feitas na RAM e só gravadas no disco ao salvar.
 - **Modo Append:** Visualize o conteúdo atual antes de adicionar novas linhas.
 - **Interface Colorida:** Feedback visual com cores ANSI (Verde para sucesso, Vermelho para erros).
 - **Modularizado:** Estrutura organizada em Header e Source files.
-- **Desempenho:** um teste com **500 mil** linhas de arquivo revelou que o Axe abre isto em **menos de um segundo**!
+- **Desempenho:** um teste com **10 milhões** linhas de arquivo revelou que o Axe abre isto em **>70 segundos**!
 
 ## Segurança e Privacidade
 O Axe é um projeto de código aberto e focado em privacidade:
