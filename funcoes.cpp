@@ -10,14 +10,14 @@ namespace fs =  std::filesystem;
 void apresentacao() {
     std::cout << VERMELHO << R"(
   ,  /\  .  
- //`-||-'\\ 
+ //`-||-'\\
 (| -=||=- |)
- \\,-||-.// 
-  `  ||  '  
+ \\,-||-.//
+  `  ||  '
      ||     
      ||     
      ()     )" << RESET << "\n";
-    std::cout << VERMELHO << " Axe Editor v1.1.0 Alpha | Performance edition\n" << RESET;
+    std::cout << VERMELHO << " Axe Editor v1.2.0 Alpha | Productiviy edition\n" << RESET;
     std::cout << "--------------------------------------------------\n";
 }
 
