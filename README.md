@@ -1,4 +1,4 @@
-# Axe v1.2.0 Alpha | Productivity Editing - antigo Rano
+# Axe v1.3.0 Alpha | "The Derusting"
 
 ## O que é o Axe?
 Axe é um editor de texto, escrito **100%** em **C++**, de código aberto e **fortemente** inspirado na ferramenta ``nano`` e ``vim``!
@@ -12,7 +12,8 @@ Axe é um editor de texto, escrito **100%** em **C++**, de código aberto e **fo
 - **Modo Append:** Visualize o conteúdo atual antes de adicionar novas linhas.
 - **Interface Colorida:** Feedback visual com cores ANSI (Verde para sucesso, Vermelho para erros).
 - **Modularizado:** Estrutura organizada em Header e Source files.
-- **Desempenho:** um teste com **10 milhões** linhas de arquivo revelou que o Axe abre isto em **<10 segundos**!
+- **Desempenho:** revelou que o Axe processa arquivos de 10 milhões de linhas em menos de 10 segundos!!
+- **Dirty Buffer System:** salvamento inteligente que detecta se você mexeu ou não no seu arquivo, assim não sobscrevendo se não digitou nada nele.
 
 ## Segurança e Privacidade
 O Axe é um projeto de código aberto e focado em privacidade:
@@ -31,6 +32,17 @@ Dentro do modo de edição, o Axe aceita comandos rápidos para facilitar o seu 
 | `:e <linha>` | Edita uma linha específica (ex: `:e 10`) |
 | `:d <linha>` | Deleta uma linha específica (ex: `:d 5`) |
 | `:s` | Salva as alterações e sai do editor |
+
+## Requisitos
+- **Compilador:** g++ (suporte a C++17 ou superior)
+- **Sistema:** Linux (testado em Debian/Arch)
+- **Ferramentas:** `make` para automação do build
+
+## Estrutura do Projeto
+O Axe segue uma organização modular para facilitar a manutenção:
+- `/src`: Lógica principal (`main.cpp`, `funcoes.cpp`, `assets.cpp`).
+- `/include`: Headers e definições globais (`axe.hpp`).
+- `/obj`: Objetos de compilação (gerados via Makefile).
 
 ## Como instalar e usar
 
@@ -58,3 +70,5 @@ Para rodar o Axe no seu terminal Linux:
    ```bash
    ./axe nomedoarquivo.txt
    ```
+
+Desenvolvido com amor e C++ por [Miguel](https://github.com/miguel-h-s)
