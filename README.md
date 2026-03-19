@@ -1,7 +1,7 @@
-# Axe v1.3.0 Alpha | "The Derusting"
+# Axe v1.3.1 Alpha | "The Derusting"
 
 ## O que é o Axe?
-Axe é um editor de texto, escrito **100%** em **C++**, de código aberto e **fortemente** inspirado na ferramenta ``nano`` e ``vim``!
+Axe é um editor de texto, escrito **100%** em **C++**, de código aberto e **fortemente** inspirado nas ferramentas ``nano``(inspiração principal), ``vim``(inpiração dos comandos) e ``ed``(inspiração de mecanica)!
 
 ## Feito **100%** pra funcionar em linux
 <img src="https://github.com/user-attachments/assets/9ebb2674-febd-4c61-9a90-2963f2f5dbe2" width="100">
@@ -14,6 +14,7 @@ Axe é um editor de texto, escrito **100%** em **C++**, de código aberto e **fo
 - **Modularizado:** Estrutura organizada em Header e Source files.
 - **Desempenho:** revelou que o Axe processa arquivos de 10 milhões de linhas em menos de 10 segundos!!
 - **Dirty Buffer System:** salvamento inteligente que detecta se você mexeu ou não no seu arquivo, assim não sobscrevendo se não digitou nada nele.
+- **Language Agnostic(independente de idioma):** use Axe independente de sua lingua editando apenas o arquivo [messages.hpp](include/messages.hpp)!
 
 ## Segurança e Privacidade
 O Axe é um projeto de código aberto e focado em privacidade:
@@ -32,6 +33,9 @@ Dentro do modo de edição, o Axe aceita comandos rápidos para facilitar o seu 
 | `:e <linha>` | Edita uma linha específica (ex: `:e 10`) |
 | `:d <linha>` | Deleta uma linha específica (ex: `:d 5`) |
 | `:s` | Salva as alterações e sai do editor |
+| `:w <nome do arquivo>` | Renomeia o arquivo em que esta editando |
+nota: a lista de comandos no README:md não pode estar atualizada como o comando `:help` do Axe!
+
 
 ## Requisitos
 - **Compilador:** g++ (suporte a C++17 ou superior)
@@ -44,9 +48,8 @@ O Axe segue uma organização modular para facilitar a manutenção:
 - `/include`: Headers e definições globais (`axe.hpp`).
 - `/obj`: Objetos de compilação (gerados via Makefile).
 
-## screenshots do projeto
-<img width="1366" height="768" alt="Captura de tela_2026-03-18_20-59-49" src="https://github.com/user-attachments/assets/63ec4d95-4977-4459-a84c-316ecb3ce6e5" />
-
+## You don't speak Portuguese?
+Make sure to edit the [messages.hpp](include/messages.hpp) file for error commands in your language!
 
 ## Como instalar e usar
 

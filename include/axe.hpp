@@ -14,8 +14,8 @@ const std::string DOURADO = "\033[1;33m";
 
 // Protótipos das funções
 // Note que o "= """ (valor padrão) só fica aqui no .h
-// void apresentacao(); retirada na versão 1.3.0 Alpha
 void menu();
+void apresentacao();
 void criar_escrever(const std::string& nome_fornecido = "");
 
 

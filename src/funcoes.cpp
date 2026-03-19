@@ -1,16 +1,24 @@
 #include <iostream>
 #include <fstream>
-#include <chrono>
 #include <iomanip>
 #include <vector>
 #include <filesystem>
+#include <limits>
+
 #include "axe.hpp"
+#include "assets.hpp"
+#include "messages.hpp"
 
 namespace fs =  std::filesystem;
 
 void menu() {
     std::cout << "1 - criar e escrever em um arquivo\n";
     std::cout << VERMELHO << "0 - sair\n" << RESET;
+}
+
+void apresentacao() {
+    std::cout << VERMELHO << AXE_LOGO << RESET << "\n";
+    std::cout << DOURADO << "Axe Editor v1.3.0 |  The Derusting" << RESET << "\n";
 }
 
 void criar_escrever(const std::string& nome_fornecido) {
@@ -24,11 +32,10 @@ void criar_escrever(const std::string& nome_fornecido) {
         std::cin >> nome_arquivo;
     }
 
-    std::cout << "\n--- CONFIGURAÇÃO DO ARQUIVO ---\n";
-    std::cout << "opções de escrita:\n 1 - sobrescrever arquivo\n 2 - não sobrescrever (carregar existente)\n";
     std::cout << std::flush;
     std::cin >> opcao_arquivo;
-    
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
     // Se a opção for carregar o arquivo existente
     if (opcao_arquivo == 2) {
         std::ifstream arquivo_leitura(nome_arquivo);   
@@ -66,30 +73,25 @@ void criar_escrever(const std::string& nome_fornecido) {
 
             std::cout << std::flush;
         } else {
-            std::cout << AMARELO << "[AVISO] Arquivo novo ou não encontrado.\n" << RESET;
+            std::cout << Msg::aviso_novo << "\n";
         }
     }
 
     // MODO DE EDIÇÃO
     std::string linha;
     std::cout << CINZA << "[Axe: " << nome_arquivo << "]" << RESET << std::endl;
-    std::cout << "digite ':help' para a lista de comandos\n";
+    std::cout << Msg::aviso_help << "\n";
 
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Limpa o buffer do teclado
-
+    
     while(true) {
+        std::cout << CINZA << std::setw(4) << buffer.size() + 1 << " | " << RESET;
         std::getline(std::cin, linha);
         if(linha == ":s") break;
 
         // COMANDO HELP
         if(linha == ":help"){
-            std::cout<<AMARELO << "\n--- Axe PRODUCTIVITY ---\n";
-            std::cout<<":v (visualizar, limites 50 linhas)\n";
-            std::cout<<":e <linha> (editar linha especifica)\n";
-            std::cout<<":d <linha> (deletar linha especifica)\n";
-            std::cout<<":s (salvar e sair)\n";
-            std::cout<<":w <nome> (mudar nome do arquivo para salvamento)\n";
-            std::cout<<RESET;
+            std::cout << Msg::help_menu << "\n";
+            continue;
         }
 
         // COMANDO VISUALIZAR
@@ -116,17 +118,17 @@ void criar_escrever(const std::string& nome_fornecido) {
                         std::getline(std::cin, nova);
                         buffer[num] = nova;
                         modificado = true;
-                        std::cout << VERDE << "[OK] Editado!\n" << RESET;
+                        std::cout << Msg::editado << "\n";
                     } else {
                         buffer.erase(buffer.begin() + num);
                         modificado = true;
-                        std::cout << VERMELHO << "[OK] Deletado!\n" << RESET;
+                        std::cout << Msg::deletado << "\n";
                     }
                 } else {
-                    std::cout << AMARELO << "[!] Linha fora do limite.\n" << RESET;
+                    std::cout << Msg::erro_limite << "\n";
                 }
             } catch (...) {
-                std::cout << AMARELO << "[!] Use :e <num> ou :d <num>\n" << RESET;
+                std::cout << Msg::erro_sintaxe << "\n";
             }
             continue;
         }
@@ -146,7 +148,7 @@ void criar_escrever(const std::string& nome_fornecido) {
 
         // checa se o usuario digitou um comando invalido
         if (!linha.empty() && linha[0] == ':') {
-            std::cout << AMARELO << "[!] Comando desconhecido. Use :help para ver a lista de comandos\n" << RESET;
+            std::cout << Msg::erro_comando << "\n";
             continue; // Ignora e volta para o início do loop sem salvar no buffer
         }
 
@@ -162,22 +164,32 @@ void criar_escrever(const std::string& nome_fornecido) {
     }
 
     
-    // SALVAMENTO FINAL INTELIGENTE
     if (modificado) {
-        // Abrimos para escrita (sobrescrevendo o antigo com o que está no buffer da RAM)
-        std::ofstream Arquivo(nome_arquivo, std::ios::out); 
-        
-        if (Arquivo.is_open()) {
-            for (const std::string& l : buffer) {
-                Arquivo << l << "\n";
+        int escolha;
+        std::cout << "\n" << Msg::config_header << "\n";
+        std::cout << " 1 - Sobrescrever (Apaga o antigo e grava o novo)\n";
+        std::cout << " 2 - Anexar (Adiciona ao final do arquivo existente)\n";
+        std::cout << " 3 - Descartar alterações e sair\n";
+        std::cout << " Escolha: ";
+        std::cin >> escolha;
+
+        if (escolha == 1 || escolha == 2) {
+            // Se escolha for 2, usamos ios::app (Append), senão usamos ios::out (Overwrite)
+            std::ios_base::openmode modo = (escolha == 2) ? std::ios::app : std::ios::out;
+            
+            std::ofstream Arquivo(nome_arquivo, modo); 
+            
+            if (Arquivo.is_open()) {
+                for (const std::string& l : buffer) {
+                    Arquivo << l << "\n";
+                }
+                Arquivo.close();
+                std::cout << Msg::salvo_em(nome_arquivo) << "\n";
+            } else {
+                std::cerr << Msg::erro_critico << "\n";
             }
-            Arquivo.close();
-            std::cout << VERDE << "[OK] Alterações salvas em: " << nome_arquivo << RESET << std::endl;
         } else {
-            std::cerr << VERMELHO << "[ERRO] Falha crítica ao gravar no disco!" << RESET << std::endl;
+            std::cout << AMARELO << "[Aviso] Alterações descartadas!\n" << RESET;
         }
-    } else {
-        // Se o usuário não mudou nada, o programa apenas avisa e fecha o arquivo virtualmente
-        std::cout << CINZA << "[Axe] Nenhuma alteração detectada. Arquivo mantido intacto." << RESET << std::endl;
     }
 }

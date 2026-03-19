@@ -13,12 +13,13 @@ int main(int argc, char* argv[]) {
         return 0; 
     }
     
-    (void)std::system("clear");     
+         
 
     int opcao;
-    std::cout << VERMELHO << AXE_LOGO << RESET << "\n";
-    std::cout << DOURADO << "Axe Editor v1.3.0 |  The Derusting" << RESET << "\n";
+    
     while(true) {
+        std::system("clear");
+        apresentacao();
         menu();
         std::cout << "opção: " << std::flush;
         if (!(std::cin >> opcao)) break; // Evita loop infinito se digitar letra
@@ -30,7 +31,7 @@ int main(int argc, char* argv[]) {
             case 1: criar_escrever(); break;
             default: std::cout << "Opcao invalida!\n";
         }
-        std::cout << "\n";
+        std::system("clear");
     }
 
     return 0;
