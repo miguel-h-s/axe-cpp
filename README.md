@@ -34,7 +34,7 @@ Dentro do modo de edição, o Axe aceita comandos rápidos para facilitar o seu 
 | `:d <linha>` | Deleta uma linha específica (ex: `:d 5`) |
 | `:s` | Salva as alterações e sai do editor |
 | `:w <nome do arquivo>` | Renomeia o arquivo em que esta editando |
-nota: a lista de comandos no README:md não pode estar atualizada como o comando `:help` do Axe!
+nota: a lista de comandos no README.md não pode estar atualizada como o comando `:help` do Axe!
 
 
 ## Requisitos
