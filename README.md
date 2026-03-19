@@ -44,6 +44,10 @@ O Axe segue uma organização modular para facilitar a manutenção:
 - `/include`: Headers e definições globais (`axe.hpp`).
 - `/obj`: Objetos de compilação (gerados via Makefile).
 
+## screenshots do projeto
+<img width="1366" height="768" alt="Captura de tela_2026-03-18_20-59-49" src="https://github.com/user-attachments/assets/63ec4d95-4977-4459-a84c-316ecb3ce6e5" />
+
+
 ## Como instalar e usar
 
 Para rodar o Axe no seu terminal Linux:
