@@ -58,29 +58,44 @@ Make sure to edit the [messages.hpp](include/messages.hpp) file for error comman
 
 ## Como instalar e usar!
 
-Para rodar o Axe no seu terminal Linux:
+### instalando
 
-1. **Clone o repositório:**
-   ```bash
-   git clone https://github.com/miguel-h-s/axe-cpp.git
-   ```
+1. clone o repositório
+``git clone https://github.com/miguel-h-s/axe-cpp.git``
 
-2. **Entre na pasta:**
-  ```bash
-  cd axe-cpp
-  ```
-3. **Compile:**
-  ```bash
-  make
-  ```
+2. entre na pasta
+``cd axe-cpp``
 
-4. **Execute:**
-   ```bash
-   ./axe #abre o Axe no menu
-   ```
-   ou execute com o nome do arquivo em que quer escrever/abrir:
-   ```bash
-   ./axe CAMINHO/DO/SEU/ARQUIVO.txt
-   ```
+3. compile o binario
+``make``
 
+**4. instalando em sua distribuição(opcional)**
+Este passo coloca o Axe em ``/usr/local/bin``, permitindo uso global.
+``sudo make install``
+
+### usando
+
+existem DUAS formas de invocar seu machado!
+
+**1. uso global(se você instalou)**
+abre o editor de qualquer pasta na sua distro
+```bash
+axe                       # Abre no menu principal
+axe caminho/do/arquivo    # Abre/Cria um arquivo específico
+```
+
+**2. uso local(sem instalação)**
+Roda o binário diretamente da pasta onde ele foi compilado.
+
+```Bash
+./axe
+./axe meu_arquivo.txt
+```
+
+### desinstalando
+Caso queira remover o Axe do sistema:
+
+```Bash
+sudo make uninstall
+```
 Desenvolvido com amor e C++ por [Miguel](https://github.com/miguel-h-s)
