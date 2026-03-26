@@ -1,5 +1,7 @@
 # Axe v1.5.1 Alpha | "The Diamond Axe Update"
 
+> "estou trabalhando no Ncurses, juro!"
+
 ## O que é o Axe?
 Axe é um editor de texto, escrito **100%** em **C++**, de código aberto e **fortemente** inspirado nas ferramentas ``nano``(inspiração principal), ``vim``(inpiração dos comandos) e ``ed``(inspiração de mecanica)!
 
