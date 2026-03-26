@@ -1,6 +1,6 @@
 # Axe v1.5.1 Alpha | "The Diamond Axe Update"
 
-> "estou trabalhando no Ncurses, juro!"
+> "estou trabalhando na TUI, juro!"
 
 ## O que é o Axe?
 Axe é um editor de texto, escrito **100%** em **C++**, de código aberto e **fortemente** inspirado nas ferramentas ``nano``(inspiração principal), ``vim``(inpiração dos comandos) e ``ed``(inspiração de mecanica)!
@@ -68,12 +68,15 @@ Make sure to edit the [messages.hpp](include/messages.hpp) file for error comman
 2. entre na pasta
 ``cd axe-cpp``
 
-3. compile o binario
-``make``
+3. prepare e compile o binario
+```bash
+cmake -B build   # Cria a receita de compilação na pasta build
+cmake --build build  # Cozinha o código e gera o executável
+```
 
 **4. instalando em sua distribuição(opcional)**
-Este passo coloca o Axe em ``/usr/local/bin``, permitindo uso global.
-``sudo make install``
+Este passo coloca o Axe em /usr/local/bin, permitindo que você use o seu "machado" em qualquer diretório.
+``sudo cmake --install build``
 
 ### usando
 
@@ -87,17 +90,18 @@ axe caminho/do/arquivo    # Abre/Cria um arquivo específico
 ```
 
 **2. uso local(sem instalação)**
-Roda o binário diretamente da pasta onde ele foi compilado.
+Roda o binário diretamente de onde ele foi construído:
 
 ```Bash
-./axe
-./axe meu_arquivo.txt
+./build/axe
+./build/axe meu_arquivo.txt
 ```
 
 ### desinstalando
 Caso queira remover o Axe do sistema:
 
 ```Bash
-sudo make uninstall
+sudo rm /usr/local/bin/axe
 ```
+**dica:** Para limpar os arquivos de compilação e começar do zero, basta apagar a pasta build: rm -rf build.
 Desenvolvido com amor e C++ por [Miguel](https://github.com/miguel-h-s)
