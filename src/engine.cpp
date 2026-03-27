@@ -82,7 +82,6 @@ void processar_edicao(std::vector<std::string>& buffer, std::string& nome_arquiv
 
             // Quando você digita 'exit' no terminal, o código volta para cá
             std::cout << "\033[1;32m\n[ Bem-vindo de volta ao Axe! ]\033[0m" << std::endl;
-            std::cout << "Pressione Enter para continuar..." << std::endl;
         }
 
         // --- COMANDOS TIPO 2: COM ARGUMENTOS (:e, :d, :w) ---
